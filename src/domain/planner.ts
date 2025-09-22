@@ -7,6 +7,7 @@ export interface PlannerInput {
   halfLengthMin: number;
   subIntervalMin: number;
   keeperRarity?: number;
+  keeperIntervalMin?: number;
   historyMinutes?: Record<PlayerId, number>;
 }
 export interface PlanWindow { minute: number; ins: PlayerId[]; outs: PlayerId[]; }
@@ -39,7 +40,15 @@ export function generatePlan(input: PlannerInput): PlannedMatch {
   const lineupByWindow: PlayerId[][] = [ [...lineup] ];
   const plannedMinutes: Record<PlayerId, number> = Object.fromEntries(playerIds.map(id => [id, 0]));
 
-  const isKeeperWindow = (wIndex: number) => (wIndex % keeperRarity === keeperRarity - 1);
+  const isKeeperWindow = (wIndex: number) => {
+  const minuteAtThisWindow = windowMinutes[wIndex] || subIntervalMin;
+
+  if (input.keeperIntervalMin && input.keeperIntervalMin > 0) {
+      return (minuteAtThisWindow % input.keeperIntervalMin) === 0;
+  }
+
+  return (wIndex % keeperRarity) === (keeperRarity - 1);
+};
 
   const addMinutesToLineup = (delta: number) => {
     lineup.forEach(id => { plannedMinutes[id] += delta; minutesAcc[id] += delta; benchStreak[id] = 0; });

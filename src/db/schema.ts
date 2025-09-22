@@ -6,7 +6,10 @@ export interface Match {
   id: string; teamId: string; sport: 'football'|'handball'|'other';
   onFieldCount: number; halves: number; halfLengthMin: number;
   subIntervalMin: number; gamesInSeries: number;
-  keeperRarity?: number; createdAt: number;
+  keeperRarity?: number;
+  keeperIntervalMin?: number;
+  keeperNamesRaw?: string;
+  createdAt: number;
 }
 export interface PlanWindow { minute: number; ins: string[]; outs: string[]; }
 export interface Plan { id: string; matchId: string; windows: PlanWindow[]; }

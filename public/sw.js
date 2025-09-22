@@ -1,4 +1,4 @@
-const CACHE = 'innbytter-cache-v1';
+const CACHE = 'innbytter-cache-v2'; // <-- øk versjon
 const ASSETS = ['/', '/index.html', '/manifest.webmanifest'];
 self.addEventListener('install', (e) => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(ASSETS)).then(()=>self.skipWaiting()));
