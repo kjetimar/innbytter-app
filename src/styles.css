@@ -1,0 +1,17 @@
+:root { --bg:#0b1020; --card:#121830; --text:#e6e9ef; --muted:#9aa4bd; --accent:#0ea5e9; }
+*{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--text);font:16px/1.5 system-ui,sans-serif}
+.app{min-height:100vh;display:flex;flex-direction:column}
+.topbar{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:#0d1328;border-bottom:1px solid #1e2747;position:sticky;top:0}
+.brand{color:var(--text);text-decoration:none;font-weight:700}
+.content{padding:16px;max-width:960px;margin:0 auto;width:100%}
+.card{background:var(--card);border:1px solid #1e2747;border-radius:16px;padding:16px;box-shadow:0 1px 8px rgba(0,0,0,.2);}
+.row{display:flex;gap:12px;flex-wrap:wrap}
+input,select,button,textarea{background:#0f1530;border:1px solid #263055;color:var(--text);padding:10px 12px;border-radius:10px}
+label{display:block;font-size:12px;color:var(--muted);margin-bottom:6px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.btn{background:var(--accent);border-color:transparent;cursor:pointer}
+.list{list-style:none;padding:0;margin:0}
+.pill{border:1px dashed #33406a;padding:6px 10px;border-radius:999px;display:inline-flex;gap:8px;align-items:center}
+.muted{color:var(--muted)}
+table{width:100%;border-collapse:collapse}
+th,td{padding:8px;border-bottom:1px solid #263055;text-align:left}
