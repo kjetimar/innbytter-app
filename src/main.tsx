@@ -1,23 +1,44 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import App from './App'
-import Home from './screens/Home'
-import SetupMatch from './screens/SetupMatch'
-import PlanView from './screens/PlanView'
-import LiveView from './screens/LiveView'
-import Summary from './screens/Summary'
-import './styles.css'
-import './pwa/register-sw'
+import AppLayout from '@/layouts/AppLayout'
+
+// eksisterende skjerm-imports
+import Home from '@/screens/Home'           // hvis du har
+import SetupMatch from '@/screens/SetupMatch'
+import PlanView from '@/screens/PlanView'
+import LiveView from '@/screens/LiveView'
+// …
 
 const router = createBrowserRouter([
-  { path: '/', element: <App />, children: [
-    { index: true, element: <Home /> },
-    { path: 'setup', element: <SetupMatch /> },
-    { path: 'plan/:matchId', element: <PlanView /> },
-    { path: 'live/:matchId', element: <LiveView /> },
-    { path: 'summary/:matchId', element: <Summary /> },
-  ]}
+  {
+    path: '/',
+    element: (
+      <AppLayout>
+        <SetupMatch />   {/* eller Home hvis du har en egen hjemskjerm */}
+      </AppLayout>
+    ),
+  },
+  {
+    path: '/plan/:matchId',
+    element: (
+      <AppLayout>
+        <PlanView />
+      </AppLayout>
+    ),
+  },
+  {
+    path: '/live/:matchId',
+    element: (
+      <AppLayout>
+        <LiveView />
+      </AppLayout>
+    ),
+  },
+  // valgfritt:
+  { path: '/settings', element: <AppLayout><div className="card">Innstillinger (kommer)</div></AppLayout> },
+  // fallback:
+  { path: '*', element: <AppLayout><div className="card">Ikke funnet</div></AppLayout> },
 ])
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
